@@ -17,6 +17,19 @@ proto_library(
     ],
 )
 
+cc_proto_library(
+    name = "solution_service_cc_proto",
+    deps = [":solution_service_proto"],
+)
+
+cc_grpc_library(
+    name = "solution_service_cc_grpc_proto",
+    srcs = [":solution_service_proto"],
+    generate_mocks = True,
+    grpc_only = True,
+    deps = [":solution_service_cc_proto"],
+)
+
 py_proto_library(
     name = "solution_service_py_pb2",
     deps = [":solution_service_proto"],
@@ -51,6 +64,11 @@ go_grpc_library(
 proto_library(
     name = "status_proto",
     srcs = ["status.proto"],
+)
+
+cc_proto_library(
+    name = "status_cc_proto",
+    deps = [":status_proto"],
 )
 
 py_proto_library(
